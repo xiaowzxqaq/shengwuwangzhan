@@ -3,7 +3,9 @@
 <head>
 	<title>首页</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="../static/Swiper/dist/css/swiper.min.css">
 	<link rel="stylesheet" type="text/css" href="../static/css/maintain.css">
+	<script type="text/javascript" src="../static/Swiper/dist/js/swiper.min.js"></script>
 </head>
 <body>
 	<div class="m-top-bar">
@@ -13,29 +15,46 @@
 	</div>
 	<div class="m-main box">
 		<div class="m-left">
-			<p class="login-text">登陆</p>
+			<p class="login-text">登录</p>
 			<div class="m-login">
-				<input type="text" name="user" placeholder="请输入您的HUB账号" id = "user">
-				<input type="password" name="password" placeholder="请输入您的密码" id = "password">
+
+				<input type="text" id="login" name="user" placeholder="请输入您的HUB账号"  onkeyup="value=value.replace(/[^UM\d+]/g,'')" onblur ="if(this.value.length!=10||(this.value[0]!='M'&&this.value[0]!='U')) {$('#error').css('visibility','visible');} else {$('#error').css('visibility','hidden');}" >
+				<input type="password" name="password" placeholder="请输入您的密码" style="margin:0;" onblur ="if(this.value.length==0) {$('#error1').css('display','inline');} else {$('#error1').css('display','none');}">
+				<a id="error" style="">*账号输入有误&nbsp;&nbsp;  </a>
+				<a id="error1" style="">*密码不能为空&nbsp;&nbsp;  </a>
 				<div class="btn">
-				<a href="#" id = "login"><input type="button" name="login" class="login-btn" value="登录">
-				</a>
+					<a href = "#" id = "login1">
+						<input type="button" name="login" class="login-btn" value="登录" onclick="choose">
+					</a>
 				</div>
-				<p style="font-size: 10px;">*如忘记密码，请到HUB系统</p>
+				<p style="font-size: 10px;" id="notice">*如忘记密码，请到HUB系统</p>
 			</div>
 		</div>
 		<div class="m-right">
-			<div  class="m-img">
+		<div class="swiper-container">
+		  <div class="swiper-wrapper">
+		    <div class="swiper-slide"></div>
+		    <div class="swiper-slide"></div>
+		    <div class="swiper-slide"></div>
+		    <div class="swiper-slide"></div>
+		    <div class="swiper-slide"></div>
+		  </div>
+		   <div class="swiper-pagination"></div>
+		</div>
+
+			<!-- <div  class="m-img">
 				<div class="m-shade">
 					<div class="slider-bar">
 						<div class="round-dot" id="img">
 							<a href="#" id="img1" class></a>
 							<a href="#" id="img2" class></a>
 							<a href="#" id="img3" class></a>
+							<a href="#" id="img4" class></a>
+							<a href="#" id="img5" class></a>
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div class="m-bottom-bar">
@@ -47,9 +66,9 @@
 		<div class="m-bottom-link">
 			<div style="float: left; height: 55px; padding-left: 2.5em;"><a>友情链接：</a></div>
 			<div >
-			<div><a href="#">生命科学与技术学院实验教学中心</a></div>
-			<div><a href="#">华中科技大学生命科学与技术学院</a></div>
-			<div><a href="#">华中科技大学设备处</a></div>
+			<div><a href="http://lifelab.hust.edu.cn/" target="_blank">生命科学与技术学院实验教学中心</a></div>
+			<div><a href="http://life.hust.edu.cn/" target="_blank">华中科技大学生命科学与技术学院</a></div>
+			<div><a href="http://sbc.hust.edu.cn/" target="_blank">华中科技大学设备处</a></div>
 			</div>
 		</div>
 	</div>

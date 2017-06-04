@@ -10,6 +10,21 @@
 a{
 	text-decoration: none;
 	color: white;
+
+}
+
+#error {
+	color: red;  
+	visibility:hidden;
+	font-size: 10px;
+}
+
+#error1 {
+	color: red;  
+	display: none;
+	padding-top: 6px;
+	float: left; 
+	font-size: 10px;
 }
 .slider-bar a {
 	width: 1em;
@@ -41,14 +56,17 @@ body {
 	width: 100%;
 }
 input {
+	box-sizing: border-box;
+	padding-left: 20px;
+	outline: none;
 	width: 100%;
 	height: 50px;
-	margin-bottom: 1em;
+	margin-bottom: 20px;
 	color: #2E6A95 ;
 	border: 1px solid  #2E6A95;
 }
 input::-webkit-input-placeholder {
-    padding:0 20px;
+    padding:0 0px;
     color: #2E6A95;
 
 }
@@ -89,7 +107,7 @@ input:-ms-input-placeholder {
 }
 .m-bottom-info {
 	display: block;
-	padding: 10px 160px;
+	padding: 10px 10px 10px 200px;
 	width: 50%;
 	float: left;
 }
@@ -99,7 +117,7 @@ input:-ms-input-placeholder {
 .m-main {
 	margin-top: 7em;
 	padding: 0em;
-	height: 22em;
+	height: 25em;
 	background-color: #e9e9e9;
 	position: relative;
 	border-radius: 0;
@@ -108,16 +126,16 @@ input:-ms-input-placeholder {
 	display: block;
 	left: 0px;
 	position: absolute;
-	width: 50%;
+	width: 51%;
 	top: 2em;
-	padding: 0 10em;
+	padding: 0 13em;
 }
 .m-right {
 	position: absolute;
-	top: 5em;	
+	top: 5.5em;	
 	width: 35%;
 	height: 14em;
-	left: 53%;
+	left: 51%;
 	border-radius: 8px;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
@@ -125,7 +143,7 @@ input:-ms-input-placeholder {
 }
 .m-img {
 	overflow: auto;
-	background-image: url('../img/img.jpg') ;
+	background-image: url(../img/1.jpg) ;
 	background-size: 100%;
 	width: 100%;
 	height: 100%;
@@ -179,4 +197,30 @@ input:-ms-input-placeholder {
 	float: left;
 	color: #2E6A95;
 	text-align: center;
+}
+.swiper-wrapper{
+	width: 300px;
+	height: 225px;
+}
+.swiper-wrapper .swiper-slide{
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+
+}
+.swiper-wrapper .swiper-slide:nth-child(1){
+	background-image: url('../img/5.JPG')
+}
+.swiper-wrapper .swiper-slide:nth-child(2){
+	background-image: url('../img/4.JPG')
+}
+.swiper-wrapper .swiper-slide:nth-child(3){
+	background-image: url('../img/3.JPG')
+}
+.swiper-wrapper .swiper-slide:nth-child(4){
+	background-image: url('../img/1.JPG')
+}
+.swiper-wrapper .swiper-slide:nth-child(5){
+	background-image: url('../img/2.JPG')
 }
