@@ -1,0 +1,182 @@
+<head>
+  <link href="../static/css/3style.css" rel="stylesheet">
+  <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery
+/jquery-1.4.min.js"></script>
+
+  <script>
+  var bef_but = "but1";
+  var bef_leftside = "leftestside_A";
+  function init(but, leftside) {
+    var buti = "#" + but;
+    var leftsidei = "#" + leftside;
+    $('#leftbuttcg').css("background-color", "#EDEDED");
+    $('#leftestsidecg').css("background-color", "#EDEDED");
+    $('#leftbuttcg').attr('id',bef_but);
+    $('#leftestsidecg').attr('id',bef_leftside);
+    $(buti).attr('id', 'leftbuttcg');
+    $(leftsidei).attr('id', 'leftestsidecg');
+    $('#leftbuttcg').css("background-color", "#ffffff");
+    $('#leftestsidecg').css("background-color", "#316B93");
+    bef_but = but;
+    bef_leftside = leftside;
+  }
+
+  var url = window.location.href;
+  function judge_url(ss, i) {
+     var reg = /id=\d/;
+    url=(reg.exec(url));
+    if (url == "id=3") {
+      ss.src = "index&id="+i;
+    } else if (url == "id=2") {
+      ss.src = "video&id="+i;
+    } else if (url == "id=1") {
+      ss.src = "word&id="+i;
+    }
+  };
+  function changetitle(but,leftestside) {
+    console.log(leftestside);
+    $(document).ready(function(){
+      $(but).hover(function(){
+        $('#leftestsidecg').css("background-color", "#EDEDED");
+        $('#leftbuttcg').css("background-color", "#EDEDED");
+        $(leftestside).css("background-color","#316B93");
+        $(but).css("background-color","#ffffff");
+        },function(){
+        $('#leftestsidecg').css("background-color", "#316B93");
+        $('#leftbuttcg').css("background-color", "#ffffff");
+        $(but).css("background-color","#EDEDED");
+        $(leftestside).css("background-color","#EDEDED");
+      })
+    });
+  };
+
+
+  </script>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>生物网站3</title>
+</head>
+<body>
+
+  <div class="toptitle">
+    <span>
+      <p1 class="tptitle">
+        <font size = "5px" color="#ffffff">华中科技大学生命科学与技术学院</font>
+        <br>
+        <strong><font size = "6" color="#ffffff">生物实验室安全教育与评测系统</font></strong>
+      </p1>
+    </span>
+  </div>
+  <div class="leftside">
+
+    <span>
+      <p>
+        <strong><font size="5" >目录</font></strong>
+      </p>
+    </span>
+    <table border="1" >
+      <ol class="leftlist" id="leftside">
+        <li type="none">
+          <script language="Javascript">
+            function safeknowledge() {
+                var ss = document.getElementById("maininside");
+                judge_url(ss, 1);
+                init("but1", "leftestside_A");
+
+
+            }
+            changetitle("#but1","#leftestside_A");
+          </script>
+
+          <div onclick="safeknowledge()" class="leftbutt" id="but1">
+            <div id = "leftestside_A" class ="leftestside">
+            </div>
+              <font size="4" color="#838384" class = "wposit">生物安全基础规范</font>
+            <br>
+          </div>
+
+        </li>
+
+        <li type="none">
+          <script language="Javascript">
+            function equipsafety() {
+              var ss = document.getElementById("maininside");
+              judge_url(ss, 2);
+              init("but2","leftestside_B");
+
+            }
+            changetitle("#but2","#leftestside_B");
+
+            </script>
+          <div class="leftbutt" onclick="equipsafety()" id="but2">
+            <div id = "leftestside_B" class ="leftestside">
+            </div>
+            <font size="4" color="#838384" class = "wposit">实验仪器安全规范</font>
+            <br>
+          </div>
+        </li>
+        <li type="none">
+          <script language="Javascript">
+            function materialsafety() {
+              var ss = document.getElementById("maininside");
+              judge_url(ss, 3);
+              init("but3","leftestside_C");
+            }
+            changetitle("#but3","#leftestside_C");
+          </script>
+          <div class="leftbutt" onclick="materialsafety()" id="but3">
+            <div id = "leftestside_C" class ="leftestside">
+            </div>
+            <font size="4" color="#838384" class = "wposit">药品试剂安全规范</font>
+            <br>
+          </div>
+        </li>
+
+        <li type="none">
+          <script language="Javascript">
+            function specialsafety() {
+              var ss = document.getElementById("maininside");
+              judge_url(ss, 4);
+              init("but4","leftestside_D");
+            }
+            changetitle("#but4","#leftestside_D");
+
+            </script>
+          <div class="leftbutt" onclick="specialsafety()" id="but4">
+            <div id = "leftestside_D" class ="leftestside">
+            </div>
+            <font size="4" color="#838384" class = "wposit">生物材料安全规范</font>
+            <br>
+          </div>
+        </li>
+
+        <li type="none">
+          <script language="Javascript">
+            function normalHandle() {
+              var ss = document.getElementById("maininside");
+              judge_url(ss, 5);
+              init("but5","leftestside_E");
+            }
+            changetitle("#but5" , "#leftestside_E");
+            </script>
+          <div class="leftbutt" onclick="normalHandle()" id="but5">
+            <div id = "leftestside_E" class ="leftestside">
+            </div>
+            <font size="4" color="#838384" class= "wposit">常见安全事故处理</font>
+            <br>
+          </div>
+        </li>
+      </ol>
+    </table>
+
+  </div>
+
+  <iframe id="maininside" scolling="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true">
+  </iframe>
+
+  </div>
+
+
+
+
+</body>

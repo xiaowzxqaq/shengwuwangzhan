@@ -1,0 +1,335 @@
+<head>
+  <title>dsfs</title>
+  <link href = "../static/css/item.css" rel="stylesheet"></link>
+  <link href = "../static/css/magic-check.css" rel="stylesheet"></link>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery
+/jquery-1.4.min.js"></script>
+  <script type="text/javascript">
+           var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+           var item = 1;
+           var sta_item = 0; //监测时间
+           var ans;
+           var rightnum = 0;
+           var wrongnum = 0;
+           var size = 0; //监控数量
+           var itemsize = 0;
+           var url =  window.location.href ;
+           var analysis; // 答案的解析
+           var right_url = "BiomaterialSafe";//题型的url
+           $(document).ready(function(){//获取url
+             var reg = /id=\d/;
+             url=(reg.exec(url));
+             if (url == "id=1") {
+               right_url = "BasicSafe";
+
+             } else if (url == "id=2") {
+               right_url = "InstrumentSafe";
+
+             } else if (url == "id=3") {
+               right_url = "ReagentSafe";
+
+             } else if (url == "id=4") {
+               right_url = "BiomaterialSafe";
+
+             } else {
+               right_url = "AccidentHandling";
+
+             }
+             console.log(right_url);
+
+
+
+           });
+           function judege(s) { //判断是否做过
+             if (item == sta_item) {
+               return false;
+             }
+             else {
+               sta_item = item;
+               return true;
+             }
+           }
+
+           function count(s) {
+             $("#correctans").text(ans);
+             $("#analysis").text(analysis);
+             console.log(ans);
+             if (ans == "正确"){
+               ans = "A";
+             }else if (ans == "错误"){
+               ans = "B";
+             }
+             if (judege()) {
+              if(s != ans) {
+                wrongnum ++;
+              }
+              else
+                rightnum ++;
+
+              if (s == "A") {
+                $("#choice_A").css("color","red");
+              }
+              if (s == "B") {
+                $("#choice_B").css("color","red");
+              }
+              if (s == "C") {
+                $("#choice_C").css("color","red");
+              }
+              if (s == "D") {
+                $("#choice_D").css("color","red");
+              }
+              if (ans == "A") {
+                $("#choice_A").css("color", "green");
+              }
+              if (ans == "B") {
+                $("#choice_B").css("color", "green");
+              }
+              if (ans == "C") {
+                $("#choice_C").css("color", "green");
+              }
+              if (ans == "D") {
+                $("#choice_D").css("color", "green");
+              }
+
+              }
+
+           }
+           function ex() {
+
+             $("ansex").text("");
+
+
+           }
+
+           $(document).ready(function(){
+
+              $.ajax({
+                type : "GET",
+                url : $SCRIPT_ROOT + '/question_info',
+                dataType : "json",
+                success : function (data) {
+                  console.log(right_url);
+                  console.log(itemsize);
+                  if (right_url == "BasicSafe") {
+                    itemsize = data.BasicSafe;
+                  } else if (right_url == "InstrumentSafe") {
+                    itemsize = data.InstrumentSafe;
+                  } else if (right_url == "ReagentSafe") {
+                    itemsize = data.ReagentSafe;
+                  } else if (right_url == "BiomaterialSafe") {
+                    itemsize = data.BiomaterialSafe;
+                  } else if (right_url == "AccidentHandling"){
+                    itemsize = data.AccidentHandling;
+                  }
+                }
+              })
+
+
+           });
+
+
+           function change() {
+             $("#correctans").text("");
+             $('#analysis').text("");
+             $.ajax( {
+               type : "POST",
+               url : $SCRIPT_ROOT + '/question',
+               dataType : "json",
+               data : {question_id:item, question_type:right_url},
+
+               success : function (data) {
+                 $("#ques").text(item + '、' + data.question.description);
+                 ans = data.question.answer;
+                 console.log(ans);
+                 size = data.question.choices.length;
+                 rightans = data.question.description;
+                 console.log("length is " + size);
+                 analysis = data.question.analysis;
+                 if (data.question.choices[3] != undefined) {
+                   $("#choice_but_C").show();
+                   $("#choice_but_D").show();
+                    $("#choice_A").css("color","#333333");
+                    $("#choice_B").css("color","#333333");
+                    $("#choice_C").css("color","#333333");
+                    $("#choice_D").css("color","#333333");
+                    $("#choice_A").text(data.question.choices[0]);
+                    $("#choice_B").text (data.question.choices[1]);
+                    $("#choice_C").text( data.question.choices[2]);
+
+                    if (typeof(data.question.choices[3]) != undefined) {
+                      $("#choice_but_D").show();
+                      $("#choice_D").text(data.question.choices[3]);
+                    }
+                    else {
+                      $("#choice_but_D").hide();
+                      $("#choice_D").text("");
+                    }
+                  }
+                  else {
+                    $("#choice_A").css("color","#333333");
+                    $("#choice_B").css("color","#333333");
+                      if (ans == true) {
+                        ans = "A";
+                      }
+                      else {
+                        ans = "B";
+                      }
+                      console.log(ans);
+                      $("#choice_A").text("正确");
+                      $("#choice_B").text("错误");
+                      $("#choice_but_C").hide();
+                      $("#choice_but_D").hide();
+                    }
+
+                  }
+               });
+             }
+        $(document).ready(function(){
+          change();
+        });
+
+       </script>
+   </head>
+   <body>
+
+
+
+      <div id = "ques">
+      </div>
+      <script type="text/javascript">
+
+      $(document).ready(function(){
+
+        $("#choice_but_A").click(function(){
+          count("A");
+          $("#rightnum").text(rightnum);
+          $("#wrongnum").text(wrongnum);
+          ex();
+        });
+      });
+      </script>
+
+
+      <div id = "choices">
+      <ul id = "all">
+      <li class = "chicer" id = "choice_but_A">
+
+          <span id = "choice_A">
+          </span>
+
+        </li>
+        <script type="text/javascript">
+        $(document).ready(function(){
+          $("#choice_but_B").click(function(){
+            count("B");
+            $("#rightnum").text(rightnum);
+            $("#wrongnum").text(wrongnum);
+            ex();
+          });
+        });
+        </script>
+        <li class = "chicer" id = "choice_but_B">
+      <span id = "choice_B">
+
+      </span>
+    </li>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $("#choice_but_C").click(function(){
+        count("C");
+        $("#rightnum").text(rightnum);
+        $("#wrongnum").text(wrongnum);
+        ex();
+      });
+    });
+    </script>
+      <li class = "chicer" id = "choice_but_C">
+      <span id = "choice_C">
+
+      </span>
+      </li>
+      <script type="text/javascript">
+      $(document).ready(function(){
+        $("#choice_but_D").click(function(){
+          count("D");
+          $("#rightnum").text(rightnum);
+          $("#wrongnum").text(wrongnum);
+          ex();
+        });
+      });
+      </script>
+      <li class = "chicer" id = "choice_but_D">
+      <span id = "choice_D" >
+      </span>
+    </li>
+    </ul>
+    </div>
+
+
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $("#getbefore").click(function(){
+        if (item > 0)
+          item --;
+        else {
+          alert("已经是第一题");
+        }
+        change();
+      });
+    });
+    </script>
+    <div id = "getbefore">
+      <font id = "fonter">上一题</font>
+    </div >
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $("#getnext").click(function(){
+        console.log(itemsize);
+        if (item < itemsize)
+          item ++;
+        else {
+          alert("已经是最后一题");
+        }
+        change();
+      });
+    });
+    </script>
+
+    <div id = "getnext">
+      <font color = "#fffff">下一题</font>
+    </div>
+
+
+       <div id = "ans">
+         <div id = "anstitle">
+           <div id = "character">
+             <strong>答对题数 </strong>
+             <span id = "rightnum"></span>
+             <strong>答错题数 </strong>
+             <span id = "wrongnum"></span>
+           </div>
+         </div>
+
+         <div id = "ansex">
+           <strong id = "anspos">
+           正确答案:
+           <span id = "correctans">
+           </span>
+          </strong>
+          </br>
+          </br>
+          </br>
+
+          <div id = "analysis" style = "margin-left:20px">
+
+          </div>
+
+
+         </div>
+       </div>
+
+   </body>
+</html>

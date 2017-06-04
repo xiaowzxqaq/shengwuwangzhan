@@ -1,0 +1,83 @@
+@charset "UTF-8";
+.toptitle {
+  position: absolute;
+  left:0px;
+  top:0px;
+  width:100em;
+  height:121px;
+  background-color:#316B93;
+}
+
+.tptitle {
+  position: absolute;
+  left:20em;
+  top:1em;
+}
+
+
+.leftside {
+  position: absolute;
+  left:15em;
+  top:150px;
+  width:14em;
+  height:21em;
+  background-color: #EDEDED;
+  text-align: center;
+}
+
+
+#maininside {
+  position: relative;
+  top: 120px;
+  left:30em;
+  height: 800px;
+  width:100em;
+  text-align: center;
+  border:0px;
+}
+.leftbutt {
+  width:14em;
+  height:40px;
+  border: 10px;
+  background-color: #EDEDED;
+  border:0px;
+  text-align: center;
+  line-height: 40px;
+
+}
+#leftbuttcg {
+  width:14em;
+  height:40px;
+  border: 10px;
+  background-color: #316B93;
+  border:0px;
+  text-align: center;
+  line-height: 40px;
+
+}
+
+
+.leftlist {
+
+  left:-2.5em;
+  position: relative;
+
+}
+.wposit {
+  left: 80px;
+  font-size:16px;
+  position: absolute;
+}
+.leftestside {
+  height: 40px;
+  width: 5px;
+  float: left;
+
+}
+
+#leftestsidecg {
+  height: 40px;
+  width: 5px;
+  float: left;
+
+}
