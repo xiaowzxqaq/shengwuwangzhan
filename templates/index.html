@@ -153,13 +153,13 @@
                     $("#choice_B").css("color","#333333");
                     $("#choice_C").css("color","#333333");
                     $("#choice_D").css("color","#333333");
-                    $("#choice_A").text(data.question.choices[0]);
-                    $("#choice_B").text (data.question.choices[1]);
-                    $("#choice_C").text( data.question.choices[2]);
+                    $("#choice_A").text('A、 '+data.question.choices[0]);
+                    $("#choice_B").text ('B、 '+data.question.choices[1]);
+                    $("#choice_C").text( 'C、 '+data.question.choices[2]);
 
                     if (typeof(data.question.choices[3]) != undefined) {
                       $("#choice_but_D").show();
-                      $("#choice_D").text(data.question.choices[3]);
+                      $("#choice_D").text('D、 '+data.question.choices[3]);
                     }
                     else {
                       $("#choice_but_D").hide();
@@ -176,8 +176,8 @@
                         ans = "B";
                       }
                       console.log(ans);
-                      $("#choice_A").text("正确");
-                      $("#choice_B").text("错误");
+                      $("#choice_A").text('A、 '+"正确");
+                      $("#choice_B").text('B、 '+"错误");
                       $("#choice_but_C").hide();
                       $("#choice_but_D").hide();
                     }
